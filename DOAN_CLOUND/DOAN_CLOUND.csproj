@@ -1099,6 +1099,7 @@
     <Content Include="Views\Home\Index_Order_Details.cshtml" />
     <Content Include="Views\Home\SoLuongGioHang.cshtml" />
     <Content Include="Views\Home\XacNhanDonHang.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1_User.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

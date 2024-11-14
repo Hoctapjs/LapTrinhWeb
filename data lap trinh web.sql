@@ -135,6 +135,35 @@ DROP TABLE ORDER_DETAILS */
     UPDATE PRODUCTS
     SET GIA = 25000
 
+
+
+-- BỔ SUNG CHO CATEGORIES
+INSERT INTO CATEGORIES (NAME)
+VALUES
+    (N'Starter')
+
+    INSERT INTO CATEGORIES (NAME)
+VALUES
+    (N'Main Dish')
+
+    INSERT INTO CATEGORIES (NAME)
+VALUES
+    (N'Desserts')
+
+    INSERT INTO CATEGORIES (NAME)
+VALUES
+    (N'Drinks')
+
+        INSERT INTO CATEGORIES (NAME)
+VALUES
+    (N'Coffee')
+
+    select * from CATEGORIES
+
+    UPDATE USERS
+    set ROLE = 'USER'
+    WHERE ROLE is NULL
+
 -- BỔ SUNG CHO PRODUCT
 INSERT INTO PRODUCTS (TENHANG, DVT, CATE_ID, HINHANH, GIA)
 VALUES
@@ -157,24 +186,12 @@ VALUES
     (N'Volka Chanh', N'Phần', 10, '/images/volka chanh.jpg', 20000),
     (N'Kiss Of Death', N'Phần', 10, '/images/kiss of death.jpg', 20000);
 
-
--- BỔ SUNG CHO CATEGORIES
-INSERT INTO CATEGORIES (NAME)
+INSERT INTO PRODUCTS (TENHANG, DVT, CATE_ID, HINHANH, GIA)
 VALUES
-    (N'Starter')
+    (N'Capuchino Đậm', N'Phần', 11, '/images/capuchinodam.jpg', 25000),
+    (N'Capuchino Sữa', N'Phần', 11, '/images/capuchinosua.jpg', 25000),
+    (N'Cà Phê Sữa Tươi', N'Phần', 11, '/images/cafesuatuoi.jpg', 25000),
+    (N'Cà Phê Kem Cháy', N'Phần', 11, '/images/cafekemchay.jpg', 25000)
 
-    INSERT INTO CATEGORIES (NAME)
-VALUES
-    (N'Main Dish')
 
-    INSERT INTO CATEGORIES (NAME)
-VALUES
-    (N'Desserts')
-
-    INSERT INTO CATEGORIES (NAME)
-VALUES
-    (N'Drinks')
-
-    UPDATE USERS
-    set ROLE = 'USER'
-    WHERE ROLE is NULL
+select * from PRODUCTS

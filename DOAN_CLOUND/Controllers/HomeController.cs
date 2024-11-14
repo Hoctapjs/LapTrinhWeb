@@ -64,11 +64,13 @@ namespace DOAN_CLOUND.Controllers
 
         public ActionResult shop()
         {
-            return View();
+            var listProduct = db.PRODUCTs.ToList();
+            return View(listProduct);
         }
         public ActionResult index()
         {
-            return View();
+            var listProduct = db.PRODUCTs.ToList();
+            return View(listProduct);
         }
 
         public ActionResult Index_Products()
@@ -298,6 +300,8 @@ namespace DOAN_CLOUND.Controllers
         public ActionResult ThemGioHang(int id, string strUrl)
         {
             List<GioHang> listgiohang = LayGioHang();
+
+            strUrl = strUrl + "#menu-scroll";
 
             GioHang sanphammoi = listgiohang.Find(sp => sp.Id_san_pham == id);
             if (sanphammoi == null)
