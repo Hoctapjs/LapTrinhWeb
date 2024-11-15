@@ -159,7 +159,7 @@ VALUES
     (N'Coffee')
 
     select * from CATEGORIES
-
+    select * from USERS
     UPDATE USERS
     set ROLE = 'USER'
     WHERE ROLE is NULL

@@ -30,36 +30,35 @@ namespace DOAN_CLOUND.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertCATEGORy(CATEGORy instance);
-    partial void UpdateCATEGORy(CATEGORy instance);
-    partial void DeleteCATEGORy(CATEGORy instance);
     partial void InsertUSER(USER instance);
     partial void UpdateUSER(USER instance);
     partial void DeleteUSER(USER instance);
-    partial void InsertORDER_DETAIL(ORDER_DETAIL instance);
-    partial void UpdateORDER_DETAIL(ORDER_DETAIL instance);
-    partial void DeleteORDER_DETAIL(ORDER_DETAIL instance);
-    partial void InsertORDER(ORDER instance);
-    partial void UpdateORDER(ORDER instance);
-    partial void DeleteORDER(ORDER instance);
     partial void InsertPRODUCT(PRODUCT instance);
     partial void UpdatePRODUCT(PRODUCT instance);
     partial void DeletePRODUCT(PRODUCT instance);
+    partial void InsertORDER(ORDER instance);
+    partial void UpdateORDER(ORDER instance);
+    partial void DeleteORDER(ORDER instance);
+    partial void InsertORDER_DETAIL(ORDER_DETAIL instance);
+    partial void UpdateORDER_DETAIL(ORDER_DETAIL instance);
+    partial void DeleteORDER_DETAIL(ORDER_DETAIL instance);
+    partial void InsertCATEGORy(CATEGORy instance);
+    partial void UpdateCATEGORy(CATEGORy instance);
+    partial void DeleteCATEGORy(CATEGORy instance);
     #endregion
-		
-		public WebCafeDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WEB_CAFEConnectionString"].ConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
 		
 		public WebCafeDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
-		
-		public WebCafeDataContext(System.Data.IDbConnection connection) : 
+        public WebCafeDataContext() :
+                base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WEB_CAFEConnectionString"].ConnectionString, mappingSource)
+        {
+            OnCreated();
+        }
+
+        public WebCafeDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -77,14 +76,6 @@ namespace DOAN_CLOUND.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<CATEGORy> CATEGORies
-		{
-			get
-			{
-				return this.GetTable<CATEGORy>();
-			}
-		}
-		
 		public System.Data.Linq.Table<USER> USERs
 		{
 			get
@@ -93,11 +84,11 @@ namespace DOAN_CLOUND.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<ORDER_DETAIL> ORDER_DETAILs
+		public System.Data.Linq.Table<PRODUCT> PRODUCTs
 		{
 			get
 			{
-				return this.GetTable<ORDER_DETAIL>();
+				return this.GetTable<PRODUCT>();
 			}
 		}
 		
@@ -109,126 +100,20 @@ namespace DOAN_CLOUND.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<PRODUCT> PRODUCTs
+		public System.Data.Linq.Table<ORDER_DETAIL> ORDER_DETAILs
 		{
 			get
 			{
-				return this.GetTable<PRODUCT>();
+				return this.GetTable<ORDER_DETAIL>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CATEGORIES")]
-	public partial class CATEGORy : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _NAME;
-		
-		private EntitySet<PRODUCT> _PRODUCTs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnNAMEChanging(string value);
-    partial void OnNAMEChanged();
-    #endregion
-		
-		public CATEGORy()
-		{
-			this._PRODUCTs = new EntitySet<PRODUCT>(new Action<PRODUCT>(this.attach_PRODUCTs), new Action<PRODUCT>(this.detach_PRODUCTs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		public System.Data.Linq.Table<CATEGORy> CATEGORies
 		{
 			get
 			{
-				return this._ID;
+				return this.GetTable<CATEGORy>();
 			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="NVarChar(100)")]
-		public string NAME
-		{
-			get
-			{
-				return this._NAME;
-			}
-			set
-			{
-				if ((this._NAME != value))
-				{
-					this.OnNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._NAME = value;
-					this.SendPropertyChanged("NAME");
-					this.OnNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CATEGORy_PRODUCT", Storage="_PRODUCTs", ThisKey="ID", OtherKey="CATE_ID")]
-		public EntitySet<PRODUCT> PRODUCTs
-		{
-			get
-			{
-				return this._PRODUCTs;
-			}
-			set
-			{
-				this._PRODUCTs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_PRODUCTs(PRODUCT entity)
-		{
-			this.SendPropertyChanging();
-			entity.CATEGORy = this;
-		}
-		
-		private void detach_PRODUCTs(PRODUCT entity)
-		{
-			this.SendPropertyChanging();
-			entity.CATEGORy = null;
 		}
 	}
 	
@@ -679,425 +564,6 @@ namespace DOAN_CLOUND.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ORDER_DETAILS")]
-	public partial class ORDER_DETAIL : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MAHOADON;
-		
-		private int _MASP;
-		
-		private System.Nullable<int> _SOLUONG;
-		
-		private System.Nullable<decimal> _GIA;
-		
-		private EntityRef<ORDER> _ORDER;
-		
-		private EntityRef<PRODUCT> _PRODUCT;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMAHOADONChanging(int value);
-    partial void OnMAHOADONChanged();
-    partial void OnMASPChanging(int value);
-    partial void OnMASPChanged();
-    partial void OnSOLUONGChanging(System.Nullable<int> value);
-    partial void OnSOLUONGChanged();
-    partial void OnGIAChanging(System.Nullable<decimal> value);
-    partial void OnGIAChanged();
-    #endregion
-		
-		public ORDER_DETAIL()
-		{
-			this._ORDER = default(EntityRef<ORDER>);
-			this._PRODUCT = default(EntityRef<PRODUCT>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAHOADON", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MAHOADON
-		{
-			get
-			{
-				return this._MAHOADON;
-			}
-			set
-			{
-				if ((this._MAHOADON != value))
-				{
-					if (this._ORDER.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMAHOADONChanging(value);
-					this.SendPropertyChanging();
-					this._MAHOADON = value;
-					this.SendPropertyChanged("MAHOADON");
-					this.OnMAHOADONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MASP", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MASP
-		{
-			get
-			{
-				return this._MASP;
-			}
-			set
-			{
-				if ((this._MASP != value))
-				{
-					if (this._PRODUCT.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMASPChanging(value);
-					this.SendPropertyChanging();
-					this._MASP = value;
-					this.SendPropertyChanged("MASP");
-					this.OnMASPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SOLUONG", DbType="Int")]
-		public System.Nullable<int> SOLUONG
-		{
-			get
-			{
-				return this._SOLUONG;
-			}
-			set
-			{
-				if ((this._SOLUONG != value))
-				{
-					this.OnSOLUONGChanging(value);
-					this.SendPropertyChanging();
-					this._SOLUONG = value;
-					this.SendPropertyChanged("SOLUONG");
-					this.OnSOLUONGChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GIA", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> GIA
-		{
-			get
-			{
-				return this._GIA;
-			}
-			set
-			{
-				if ((this._GIA != value))
-				{
-					this.OnGIAChanging(value);
-					this.SendPropertyChanging();
-					this._GIA = value;
-					this.SendPropertyChanged("GIA");
-					this.OnGIAChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ORDER_ORDER_DETAIL", Storage="_ORDER", ThisKey="MAHOADON", OtherKey="MAHOADON", IsForeignKey=true)]
-		public ORDER ORDER
-		{
-			get
-			{
-				return this._ORDER.Entity;
-			}
-			set
-			{
-				ORDER previousValue = this._ORDER.Entity;
-				if (((previousValue != value) 
-							|| (this._ORDER.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ORDER.Entity = null;
-						previousValue.ORDER_DETAILs.Remove(this);
-					}
-					this._ORDER.Entity = value;
-					if ((value != null))
-					{
-						value.ORDER_DETAILs.Add(this);
-						this._MAHOADON = value.MAHOADON;
-					}
-					else
-					{
-						this._MAHOADON = default(int);
-					}
-					this.SendPropertyChanged("ORDER");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRODUCT_ORDER_DETAIL", Storage="_PRODUCT", ThisKey="MASP", OtherKey="ID", IsForeignKey=true)]
-		public PRODUCT PRODUCT
-		{
-			get
-			{
-				return this._PRODUCT.Entity;
-			}
-			set
-			{
-				PRODUCT previousValue = this._PRODUCT.Entity;
-				if (((previousValue != value) 
-							|| (this._PRODUCT.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PRODUCT.Entity = null;
-						previousValue.ORDER_DETAILs.Remove(this);
-					}
-					this._PRODUCT.Entity = value;
-					if ((value != null))
-					{
-						value.ORDER_DETAILs.Add(this);
-						this._MASP = value.ID;
-					}
-					else
-					{
-						this._MASP = default(int);
-					}
-					this.SendPropertyChanged("PRODUCT");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ORDERS")]
-	public partial class ORDER : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MAHOADON;
-		
-		private System.Nullable<int> _MAKH;
-		
-		private System.Nullable<System.DateTime> _NGAYLAP;
-		
-		private System.Nullable<decimal> _TONGGIA;
-		
-		private EntitySet<ORDER_DETAIL> _ORDER_DETAILs;
-		
-		private EntityRef<USER> _USER;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMAHOADONChanging(int value);
-    partial void OnMAHOADONChanged();
-    partial void OnMAKHChanging(System.Nullable<int> value);
-    partial void OnMAKHChanged();
-    partial void OnNGAYLAPChanging(System.Nullable<System.DateTime> value);
-    partial void OnNGAYLAPChanged();
-    partial void OnTONGGIAChanging(System.Nullable<decimal> value);
-    partial void OnTONGGIAChanged();
-    #endregion
-		
-		public ORDER()
-		{
-			this._ORDER_DETAILs = new EntitySet<ORDER_DETAIL>(new Action<ORDER_DETAIL>(this.attach_ORDER_DETAILs), new Action<ORDER_DETAIL>(this.detach_ORDER_DETAILs));
-			this._USER = default(EntityRef<USER>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAHOADON", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MAHOADON
-		{
-			get
-			{
-				return this._MAHOADON;
-			}
-			set
-			{
-				if ((this._MAHOADON != value))
-				{
-					this.OnMAHOADONChanging(value);
-					this.SendPropertyChanging();
-					this._MAHOADON = value;
-					this.SendPropertyChanged("MAHOADON");
-					this.OnMAHOADONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAKH", DbType="Int")]
-		public System.Nullable<int> MAKH
-		{
-			get
-			{
-				return this._MAKH;
-			}
-			set
-			{
-				if ((this._MAKH != value))
-				{
-					if (this._USER.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMAKHChanging(value);
-					this.SendPropertyChanging();
-					this._MAKH = value;
-					this.SendPropertyChanged("MAKH");
-					this.OnMAKHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYLAP", DbType="DateTime")]
-		public System.Nullable<System.DateTime> NGAYLAP
-		{
-			get
-			{
-				return this._NGAYLAP;
-			}
-			set
-			{
-				if ((this._NGAYLAP != value))
-				{
-					this.OnNGAYLAPChanging(value);
-					this.SendPropertyChanging();
-					this._NGAYLAP = value;
-					this.SendPropertyChanged("NGAYLAP");
-					this.OnNGAYLAPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGGIA", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> TONGGIA
-		{
-			get
-			{
-				return this._TONGGIA;
-			}
-			set
-			{
-				if ((this._TONGGIA != value))
-				{
-					this.OnTONGGIAChanging(value);
-					this.SendPropertyChanging();
-					this._TONGGIA = value;
-					this.SendPropertyChanged("TONGGIA");
-					this.OnTONGGIAChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ORDER_ORDER_DETAIL", Storage="_ORDER_DETAILs", ThisKey="MAHOADON", OtherKey="MAHOADON")]
-		public EntitySet<ORDER_DETAIL> ORDER_DETAILs
-		{
-			get
-			{
-				return this._ORDER_DETAILs;
-			}
-			set
-			{
-				this._ORDER_DETAILs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER_ORDER", Storage="_USER", ThisKey="MAKH", OtherKey="ID", IsForeignKey=true)]
-		public USER USER
-		{
-			get
-			{
-				return this._USER.Entity;
-			}
-			set
-			{
-				USER previousValue = this._USER.Entity;
-				if (((previousValue != value) 
-							|| (this._USER.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._USER.Entity = null;
-						previousValue.ORDERs.Remove(this);
-					}
-					this._USER.Entity = value;
-					if ((value != null))
-					{
-						value.ORDERs.Add(this);
-						this._MAKH = value.ID;
-					}
-					else
-					{
-						this._MAKH = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("USER");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ORDER_DETAILs(ORDER_DETAIL entity)
-		{
-			this.SendPropertyChanging();
-			entity.ORDER = this;
-		}
-		
-		private void detach_ORDER_DETAILs(ORDER_DETAIL entity)
-		{
-			this.SendPropertyChanging();
-			entity.ORDER = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PRODUCTS")]
 	public partial class PRODUCT : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1346,6 +812,539 @@ namespace DOAN_CLOUND.Models
 		{
 			this.SendPropertyChanging();
 			entity.PRODUCT = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ORDERS")]
+	public partial class ORDER : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MAHOADON;
+		
+		private System.Nullable<int> _MAKH;
+		
+		private System.Nullable<System.DateTime> _NGAYLAP;
+		
+		private System.Nullable<decimal> _TONGGIA;
+		
+		private EntitySet<ORDER_DETAIL> _ORDER_DETAILs;
+		
+		private EntityRef<USER> _USER;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMAHOADONChanging(int value);
+    partial void OnMAHOADONChanged();
+    partial void OnMAKHChanging(System.Nullable<int> value);
+    partial void OnMAKHChanged();
+    partial void OnNGAYLAPChanging(System.Nullable<System.DateTime> value);
+    partial void OnNGAYLAPChanged();
+    partial void OnTONGGIAChanging(System.Nullable<decimal> value);
+    partial void OnTONGGIAChanged();
+    #endregion
+		
+		public ORDER()
+		{
+			this._ORDER_DETAILs = new EntitySet<ORDER_DETAIL>(new Action<ORDER_DETAIL>(this.attach_ORDER_DETAILs), new Action<ORDER_DETAIL>(this.detach_ORDER_DETAILs));
+			this._USER = default(EntityRef<USER>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAHOADON", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MAHOADON
+		{
+			get
+			{
+				return this._MAHOADON;
+			}
+			set
+			{
+				if ((this._MAHOADON != value))
+				{
+					this.OnMAHOADONChanging(value);
+					this.SendPropertyChanging();
+					this._MAHOADON = value;
+					this.SendPropertyChanged("MAHOADON");
+					this.OnMAHOADONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAKH", DbType="Int")]
+		public System.Nullable<int> MAKH
+		{
+			get
+			{
+				return this._MAKH;
+			}
+			set
+			{
+				if ((this._MAKH != value))
+				{
+					if (this._USER.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMAKHChanging(value);
+					this.SendPropertyChanging();
+					this._MAKH = value;
+					this.SendPropertyChanged("MAKH");
+					this.OnMAKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYLAP", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NGAYLAP
+		{
+			get
+			{
+				return this._NGAYLAP;
+			}
+			set
+			{
+				if ((this._NGAYLAP != value))
+				{
+					this.OnNGAYLAPChanging(value);
+					this.SendPropertyChanging();
+					this._NGAYLAP = value;
+					this.SendPropertyChanged("NGAYLAP");
+					this.OnNGAYLAPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGGIA", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> TONGGIA
+		{
+			get
+			{
+				return this._TONGGIA;
+			}
+			set
+			{
+				if ((this._TONGGIA != value))
+				{
+					this.OnTONGGIAChanging(value);
+					this.SendPropertyChanging();
+					this._TONGGIA = value;
+					this.SendPropertyChanged("TONGGIA");
+					this.OnTONGGIAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ORDER_ORDER_DETAIL", Storage="_ORDER_DETAILs", ThisKey="MAHOADON", OtherKey="MAHOADON")]
+		public EntitySet<ORDER_DETAIL> ORDER_DETAILs
+		{
+			get
+			{
+				return this._ORDER_DETAILs;
+			}
+			set
+			{
+				this._ORDER_DETAILs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER_ORDER", Storage="_USER", ThisKey="MAKH", OtherKey="ID", IsForeignKey=true)]
+		public USER USER
+		{
+			get
+			{
+				return this._USER.Entity;
+			}
+			set
+			{
+				USER previousValue = this._USER.Entity;
+				if (((previousValue != value) 
+							|| (this._USER.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._USER.Entity = null;
+						previousValue.ORDERs.Remove(this);
+					}
+					this._USER.Entity = value;
+					if ((value != null))
+					{
+						value.ORDERs.Add(this);
+						this._MAKH = value.ID;
+					}
+					else
+					{
+						this._MAKH = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("USER");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ORDER_DETAILs(ORDER_DETAIL entity)
+		{
+			this.SendPropertyChanging();
+			entity.ORDER = this;
+		}
+		
+		private void detach_ORDER_DETAILs(ORDER_DETAIL entity)
+		{
+			this.SendPropertyChanging();
+			entity.ORDER = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ORDER_DETAILS")]
+	public partial class ORDER_DETAIL : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MAHOADON;
+		
+		private int _MASP;
+		
+		private System.Nullable<int> _SOLUONG;
+		
+		private System.Nullable<decimal> _GIA;
+		
+		private EntityRef<ORDER> _ORDER;
+		
+		private EntityRef<PRODUCT> _PRODUCT;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMAHOADONChanging(int value);
+    partial void OnMAHOADONChanged();
+    partial void OnMASPChanging(int value);
+    partial void OnMASPChanged();
+    partial void OnSOLUONGChanging(System.Nullable<int> value);
+    partial void OnSOLUONGChanged();
+    partial void OnGIAChanging(System.Nullable<decimal> value);
+    partial void OnGIAChanged();
+    #endregion
+		
+		public ORDER_DETAIL()
+		{
+			this._ORDER = default(EntityRef<ORDER>);
+			this._PRODUCT = default(EntityRef<PRODUCT>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAHOADON", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MAHOADON
+		{
+			get
+			{
+				return this._MAHOADON;
+			}
+			set
+			{
+				if ((this._MAHOADON != value))
+				{
+					if (this._ORDER.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMAHOADONChanging(value);
+					this.SendPropertyChanging();
+					this._MAHOADON = value;
+					this.SendPropertyChanged("MAHOADON");
+					this.OnMAHOADONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MASP", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MASP
+		{
+			get
+			{
+				return this._MASP;
+			}
+			set
+			{
+				if ((this._MASP != value))
+				{
+					if (this._PRODUCT.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMASPChanging(value);
+					this.SendPropertyChanging();
+					this._MASP = value;
+					this.SendPropertyChanged("MASP");
+					this.OnMASPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SOLUONG", DbType="Int")]
+		public System.Nullable<int> SOLUONG
+		{
+			get
+			{
+				return this._SOLUONG;
+			}
+			set
+			{
+				if ((this._SOLUONG != value))
+				{
+					this.OnSOLUONGChanging(value);
+					this.SendPropertyChanging();
+					this._SOLUONG = value;
+					this.SendPropertyChanged("SOLUONG");
+					this.OnSOLUONGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GIA", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> GIA
+		{
+			get
+			{
+				return this._GIA;
+			}
+			set
+			{
+				if ((this._GIA != value))
+				{
+					this.OnGIAChanging(value);
+					this.SendPropertyChanging();
+					this._GIA = value;
+					this.SendPropertyChanged("GIA");
+					this.OnGIAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ORDER_ORDER_DETAIL", Storage="_ORDER", ThisKey="MAHOADON", OtherKey="MAHOADON", IsForeignKey=true)]
+		public ORDER ORDER
+		{
+			get
+			{
+				return this._ORDER.Entity;
+			}
+			set
+			{
+				ORDER previousValue = this._ORDER.Entity;
+				if (((previousValue != value) 
+							|| (this._ORDER.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ORDER.Entity = null;
+						previousValue.ORDER_DETAILs.Remove(this);
+					}
+					this._ORDER.Entity = value;
+					if ((value != null))
+					{
+						value.ORDER_DETAILs.Add(this);
+						this._MAHOADON = value.MAHOADON;
+					}
+					else
+					{
+						this._MAHOADON = default(int);
+					}
+					this.SendPropertyChanged("ORDER");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRODUCT_ORDER_DETAIL", Storage="_PRODUCT", ThisKey="MASP", OtherKey="ID", IsForeignKey=true)]
+		public PRODUCT PRODUCT
+		{
+			get
+			{
+				return this._PRODUCT.Entity;
+			}
+			set
+			{
+				PRODUCT previousValue = this._PRODUCT.Entity;
+				if (((previousValue != value) 
+							|| (this._PRODUCT.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PRODUCT.Entity = null;
+						previousValue.ORDER_DETAILs.Remove(this);
+					}
+					this._PRODUCT.Entity = value;
+					if ((value != null))
+					{
+						value.ORDER_DETAILs.Add(this);
+						this._MASP = value.ID;
+					}
+					else
+					{
+						this._MASP = default(int);
+					}
+					this.SendPropertyChanged("PRODUCT");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CATEGORIES")]
+	public partial class CATEGORy : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _NAME;
+		
+		private EntitySet<PRODUCT> _PRODUCTs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNAMEChanging(string value);
+    partial void OnNAMEChanged();
+    #endregion
+		
+		public CATEGORy()
+		{
+			this._PRODUCTs = new EntitySet<PRODUCT>(new Action<PRODUCT>(this.attach_PRODUCTs), new Action<PRODUCT>(this.detach_PRODUCTs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="NVarChar(100)")]
+		public string NAME
+		{
+			get
+			{
+				return this._NAME;
+			}
+			set
+			{
+				if ((this._NAME != value))
+				{
+					this.OnNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._NAME = value;
+					this.SendPropertyChanged("NAME");
+					this.OnNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CATEGORy_PRODUCT", Storage="_PRODUCTs", ThisKey="ID", OtherKey="CATE_ID")]
+		public EntitySet<PRODUCT> PRODUCTs
+		{
+			get
+			{
+				return this._PRODUCTs;
+			}
+			set
+			{
+				this._PRODUCTs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_PRODUCTs(PRODUCT entity)
+		{
+			this.SendPropertyChanging();
+			entity.CATEGORy = this;
+		}
+		
+		private void detach_PRODUCTs(PRODUCT entity)
+		{
+			this.SendPropertyChanging();
+			entity.CATEGORy = null;
 		}
 	}
 }

@@ -8,14 +8,14 @@
 <h2>Category</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create_Category", "Category") 
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.NAME)
         </th>
-        <th>TINHNANG</th>
+        <th>FEATURE</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -24,9 +24,9 @@
             @Html.DisplayFor(modelItem => item.NAME)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Update", "Update_Category", "Category", new { id = item.ID }, null) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete_Category", "Category", new { id = item.ID }, null)
         </td>
     </tr>
 }

@@ -14,7 +14,7 @@
 <h2>Index_User</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create_User", "User")
 </p>
 
 <div class="table-wrapper">
@@ -99,9 +99,9 @@
                     @Html.DisplayFor(modelItem => item.PASSWORD)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Update", "Update_User", "User", new { id = item.ID }, null) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Delete", "Delete_User", "User", new { id = item.ID }, null)
                 </td>
             </tr>
         }
