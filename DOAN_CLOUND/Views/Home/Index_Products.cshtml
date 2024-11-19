@@ -25,7 +25,10 @@
             @Html.DisplayNameFor(model => model.HINHANH)
         </th>
         <th>
-            TINHNANG
+            @Html.DisplayNameFor(model => model.GIA)
+        </th>
+        <th>
+            FREATURE
         </th>
     </tr>
 
@@ -44,9 +47,12 @@
             @Html.DisplayFor(modelItem => item.HINHANH)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.DisplayFor(modelItem => item.GIA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
     </tr>
 }

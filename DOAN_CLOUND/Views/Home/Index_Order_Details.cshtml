@@ -7,9 +7,10 @@
 
 <h2>Index_Order_Details</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@*<p>
+    @Html.ActionLink("Create New", "Create_Order_Detail", "Order_Detail")
+
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -42,9 +43,9 @@
             @Html.DisplayFor(modelItem => item.GIA)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Update_Order_Detail", "Order_Detail", new { mahoadon = item.MAHOADON, masp = item.MASP  }, null)|
+            @Html.ActionLink("Details", "Details", "Order_Detail", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete_Order_Detail", "Order_Detail", new { mahoadon = item.MAHOADON, masp = item.MASP }, null)
         </td>
     </tr>
 }

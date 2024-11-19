@@ -30,8 +30,8 @@ namespace DOAN_CLOUND.Controllers
             {
                 try
                 {
-                    var existingCategory = db.USERs.FirstOrDefault(c => c.USERNAME == user.USERNAME);
-                    if (existingCategory != null)
+                    var existingUser = db.USERs.FirstOrDefault(c => c.USERNAME == user.USERNAME);
+                    if (existingUser != null)
                     {
                         ModelState.AddModelError("", "Username đã tồn tại. Vui lòng chọn tên khác.");
                         return View(user);

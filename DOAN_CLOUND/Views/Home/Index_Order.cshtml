@@ -8,8 +8,8 @@
 <h2>Index_Order</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    @Html.ActionLink("Create New", "Create_Order", "Order")
+</p>    
 <table class="table">
     <tr>
         <th>
@@ -42,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.TONGGIA)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.MAHOADON }) |
+            @Html.ActionLink("Update", "Update_Order", "Order", new { mahoadon = item.MAHOADON }, null) |
             @Html.ActionLink("Details", "Details", new { id = item.MAHOADON }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.MAHOADON })
+            @Html.ActionLink("Delete", "Delete_Order", "Order", new { mahoadon = item.MAHOADON }, null)
         </td>
     </tr>
 }

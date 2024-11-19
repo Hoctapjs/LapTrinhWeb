@@ -801,6 +801,8 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Order_DetailController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1115,6 +1117,12 @@
     <Content Include="Views\User\Create_User.cshtml" />
     <Content Include="Views\User\Delete_User.cshtml" />
     <Content Include="Views\User\Update_User.cshtml" />
+    <Content Include="Views\Order\Create_Order.cshtml" />
+    <Content Include="Views\Order\Delete_Order.cshtml" />
+    <Content Include="Views\Order\Update_Order.cshtml" />
+    <Content Include="Views\Order_Detail\Create_Order_Detail.cshtml" />
+    <Content Include="Views\Order_Detail\Delete_Order_Detail.cshtml" />
+    <Content Include="Views\Order_Detail\Update_Order_Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
