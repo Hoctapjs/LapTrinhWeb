@@ -8,7 +8,7 @@
 <h2>Products</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create_Product", "Product")
 </p>
 <table class="table">
     <tr>
@@ -25,36 +25,31 @@
             @Html.DisplayNameFor(model => model.HINHANH)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GIA)
-        </th>
-        <th>
-            FREATURE
+            TINHNANG
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TENHANG)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DVT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CATE_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HINHANH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GIA)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TENHANG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DVT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CATE_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HINHANH)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "Update_Product", "Product", new { id = item.ID }, null) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, null) |
+                @Html.ActionLink("Delete", "Delete_Product", "Product", new { id = item.ID }, null)
+            </td>
+        </tr>
+    }
 
 </table>

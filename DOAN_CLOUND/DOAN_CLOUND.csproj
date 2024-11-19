@@ -803,6 +803,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Order_DetailController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1123,6 +1124,9 @@
     <Content Include="Views\Order_Detail\Create_Order_Detail.cshtml" />
     <Content Include="Views\Order_Detail\Delete_Order_Detail.cshtml" />
     <Content Include="Views\Order_Detail\Update_Order_Detail.cshtml" />
+    <Content Include="Views\Product\Create_Product.cshtml" />
+    <Content Include="Views\Product\Delete_Product.cshtml" />
+    <Content Include="Views\Product\Update_Product.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
