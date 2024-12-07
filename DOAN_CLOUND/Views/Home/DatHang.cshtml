@@ -37,9 +37,9 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    @using (Html.BeginForm("DatHang", "Home"))
-                    {
+                using (Html.BeginForm("DatHang", "Home"))
+                {
+                    <tr>
                         <td class="">@Html.DisplayFor(modelItem => item.Ten_san_pham)</td>
                         <td>
                             @*<img src="@item.Anhbia" class="img-thumbnail" width="200px" alt="@item.Ten_san_pham" />*@
@@ -58,20 +58,22 @@
                         @*<td>
                         <button type="submit" class="btn btn-success btn-sm">Chốt Đơn</button>
                     </td>*@
-                    }
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><span class="font-weight-bold text-primary">Số Lượng: @ViewBag.TongSoLuong</span></td>
-                    <td class="">
-                        <span class="font-weight-bold text-primary">Tổng Tiền: @ViewBag.TongThanhTien</span>
-                    </td>
-                    <td>
-                        <button type="submit" class="btn btn-success btn-sm">Chốt Đơn</button>
-                    </td>
-                </tr>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span class="font-weight-bold text-primary">Số Lượng: @ViewBag.TongSoLuong</span></td>
+                        <td class="">
+                            <span class="font-weight-bold text-primary">Tổng Tiền: @ViewBag.TongThanhTien</span>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-success btn-sm">Chốt Đơn</button>
+                        </td>
+                    </tr>
+
+                }
+
             }
         </tbody>
     </table>
