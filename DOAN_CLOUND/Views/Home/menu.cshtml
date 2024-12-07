@@ -301,33 +301,6 @@
                                             </div>
                                         }
 
-                                    <script>
-                                            $(document).ready(function () {
-                                                $(".add-to-cart").click(function (e) {
-                                                    e.preventDefault();
-
-                                                    var productId = $(this).data("id");
-
-                                                    $.ajax({
-                                                        url: '@Url.Action("ThemGioHangAjax", "Home")',
-                                                        type: 'POST',
-                                                        data: { id: productId },
-                                                        success: function (response) {
-                                                            // Cập nhật số lượng và tổng tiền
-                                                            $("#cart-quantity").text(response.soluong);
-                                                            $("#cart-total").text(response.tongtien.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
-
-                                                            // Thêm thông báo thành công
-                                                            alert("Đã thêm sản phẩm vào giỏ hàng!");
-                                                        },
-                                                        error: function () {
-                                                            alert("Có lỗi xảy ra. Vui lòng thử lại!");
-                                                        }
-                                                    });
-                                                });
-                                            });
-
-                                    </script>
 
                                         @*<div class="col-md-4 text-center">
                                                 <div class="menu-wrap">
