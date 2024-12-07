@@ -164,7 +164,7 @@
 
                                         <td class="price">@item.Dongia VND</td>
 
-                                        <td class="quantity"> } 
+                                        <td class="quantity"> 
                                             <div class="input-group mb-3">
                                                 @*Input có id là quantity- cho chỗ hiển thị số lượng*@
                                                 <input type="number" id="quantity-@item.Id_san_pham" class="quantity form-control input-number" value="@item.Soluong" min="1" max="100" onchange="updateTotal(this)" style="width: 100px !important; max-width: 80px; left: 50px; text-align: center;">
@@ -222,7 +222,7 @@
                         <hr>
                         <p class="d-flex total-price">
                             <span>Total</span>
-                            <span>@ViewBag.tongtien VND</span>
+                            <span id="cart-total">@ViewBag.tongtien VND</span>
                         </p>
                         <hr />
                         <div class="mt-3 p-1">
@@ -318,8 +318,12 @@
             var totalPrice = response.totalAmount; // Giả sử bạn trả về totalAmount từ Action
             var totalElement = document.getElementById('total-' + productId);
             totalElement.innerHTML = totalPrice + ' VND';
-            // Cập nhật tổng tiền nếu cần thiết
-            // bạn có thể tính lại nếu cần và cập nhật tổng.
+
+            // Cập nhật tổng tiền giỏ hàng
+            var cartTotalElement = document.getElementById('cart-total');
+            cartTotalElement.innerHTML = response.cartTotal + ' VND'; // Cập nhật tổng giỏ hàng;
+
+            $('.bag small').html(response.quantityTotal); 
         },
         error: function (xhr, status, error) {
             alert('Có lỗi xảy ra! Vui lòng thử lại.');

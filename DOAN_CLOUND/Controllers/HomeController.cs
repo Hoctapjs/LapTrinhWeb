@@ -403,10 +403,22 @@ namespace DOAN_CLOUND.Controllers
                 sanpham.Soluong = int.Parse(f["txtsoluong"].ToString());
             }
 
-            // Tính toán tổng tiền cho giỏ hàng, bạn có thể thay đổi cách tính nếu cần  
-            float tongtien = TinhTongTien();
+            //// Tính toán tổng tiền cho giỏ hàng, bạn có thể thay đổi cách tính nếu cần  
+            //float tongtien = TinhTongTien();
 
-            return Json(new { totalAmount = sanpham.Thanhtien }); // Cập nhật giá trị tổng trong response  
+            //return Json(new { totalAmount = sanpham.Thanhtien }); // Cập nhật giá trị tổng trong response  
+
+            // Tính toán tổng tiền cho từng sản phẩm  
+            float productTotal = sanpham.Dongia * sanpham.Soluong; 
+            sanpham.Thanhtien = productTotal;
+
+            // Tính toán tổng tiền cho giỏ hàng  
+            float cartTotal = TinhTongTien();
+
+            // Tính tổng số lượng sản phẩm trong giỏ hàng  
+            int quantityTotal = TinhSoLuong();
+
+            return Json(new { totalAmount = productTotal, cartTotal = cartTotal, quantityTotal = quantityTotal });
         }
 
         // kết thúc phần giỏ hàng
