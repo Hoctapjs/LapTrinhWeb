@@ -317,6 +317,7 @@ namespace DOAN_CLOUND.Controllers
             }
         }
 
+
         public float TinhTongTien()
         {
             float tongtien = 0;
@@ -376,19 +377,36 @@ namespace DOAN_CLOUND.Controllers
             return RedirectToAction("GioHangRong", "Home");
         }
 
-        public ActionResult UpdateGioHang(int id, FormCollection f)
+        //public ActionResult UpdateGioHang(int id, FormCollection f)
+        //{
+        //    List<GioHang> listgiohang = LayGioHang();
+
+        //    GioHang sanpham = listgiohang.Find(sp => sp.Id_san_pham == id);
+
+        //    if (sanpham != null)
+        //    {
+        //        sanpham.Soluong = int.Parse(f["txtsoluong"].ToString());
+
+        //    }
+
+        //    return RedirectToAction("GioHang", "Home");
+        //}
+
+        [HttpPost]
+        public JsonResult UpdateGioHang(int id, FormCollection f)
         {
             List<GioHang> listgiohang = LayGioHang();
-
             GioHang sanpham = listgiohang.Find(sp => sp.Id_san_pham == id);
 
             if (sanpham != null)
             {
                 sanpham.Soluong = int.Parse(f["txtsoluong"].ToString());
-
             }
 
-            return RedirectToAction("GioHang", "Home");
+            // Tính toán tổng tiền cho giỏ hàng, bạn có thể thay đổi cách tính nếu cần  
+            float tongtien = TinhTongTien();
+
+            return Json(new { totalAmount = sanpham.Thanhtien }); // Cập nhật giá trị tổng trong response  
         }
 
         // kết thúc phần giỏ hàng

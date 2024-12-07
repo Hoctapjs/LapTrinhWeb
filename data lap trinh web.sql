@@ -194,3 +194,36 @@ VALUES
 
 
 select * from PRODUCTS
+
+-- TRIGGER TỰ ĐỘNG CẬP NHẬT GIÁ
+CREATE TRIGGER TRG_UpdateTotalAmount
+ON ORDER_DETAILS
+FOR INSERT, UPDATE, DELETE
+AS
+BEGIN
+    -- Cập nhật tổng tiền khi có thao tác thêm hoặc cập nhật
+    IF EXISTS (SELECT * FROM inserted)
+    BEGIN
+        UPDATE o
+        SET o.TONGGIA = (
+            SELECT SUM(od.SOLUONG * od.GIA) 
+            FROM ORDER_DETAILS od
+            WHERE od.MAHOADON = o.MAHOADON
+        )
+        FROM ORDERS o
+        WHERE o.MAHOADON IN (SELECT DISTINCT MAHOADON FROM inserted)
+    END
+
+    -- Cập nhật tổng tiền khi có thao tác xóa
+    IF EXISTS (SELECT * FROM deleted)
+    BEGIN
+        UPDATE o
+        SET o.TONGGIA = (
+            SELECT SUM(od.SOLUONG * od.GIA) 
+            FROM ORDER_DETAILS od
+            WHERE od.MAHOADON = o.MAHOADON
+        )
+        FROM ORDERS o
+        WHERE o.MAHOADON IN (SELECT DISTINCT MAHOADON FROM deleted)
+    END
+END

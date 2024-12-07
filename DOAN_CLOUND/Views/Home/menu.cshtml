@@ -289,11 +289,45 @@
                                                         <h3><a href="#">@item.TENHANG</a></h3>
                                                         <p>@item.DVT</p>
                                                         <p class="price"><span>@item.GIA VND</span></p>
-                                                        <p><a href="@Url.Action("ThemGioHang", "Home", new { id = item.ID, strUrl = Request.Url.ToString() })" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+                                                        @*<p><a href="@Url.Action("ThemGioHang", "Home", new { id = item.ID, strUrl = Request.Url.ToString() })" class="btn btn-primary btn-outline-primary">Add to cart</a></p>*@
+                                                        <p>
+                                                            <a href="javascript:void(0);"
+                                                               class="btn btn-primary btn-outline-primary add-to-cart"
+                                                               data-id="@item.ID">Add to cart</a>
+                                                        </p>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         }
+
+                                    <script>
+                                            $(document).ready(function () {
+                                                $(".add-to-cart").click(function (e) {
+                                                    e.preventDefault();
+
+                                                    var productId = $(this).data("id");
+
+                                                    $.ajax({
+                                                        url: '@Url.Action("ThemGioHangAjax", "Home")',
+                                                        type: 'POST',
+                                                        data: { id: productId },
+                                                        success: function (response) {
+                                                            // Cập nhật số lượng và tổng tiền
+                                                            $("#cart-quantity").text(response.soluong);
+                                                            $("#cart-total").text(response.tongtien.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+
+                                                            // Thêm thông báo thành công
+                                                            alert("Đã thêm sản phẩm vào giỏ hàng!");
+                                                        },
+                                                        error: function () {
+                                                            alert("Có lỗi xảy ra. Vui lòng thử lại!");
+                                                        }
+                                                    });
+                                                });
+                                            });
+
+                                    </script>
 
                                         @*<div class="col-md-4 text-center">
                                                 <div class="menu-wrap">
