@@ -80,6 +80,29 @@
             margin-top: 20px;
             margin-bottom: 20px;
         }
+
+        .background {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .background-blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            z-index: 3;
+        }
     </style>
 </head>
 <body>
@@ -148,13 +171,43 @@
 
                         if (day == day_out)
                         {
-                            <div class="weather-card">
-                                @*<div class="time">@Model.hourly.time[i]</div>*@
-                                <div class="time ngay">Ngày: @day/@month/@year</div>
-                                <div class="time gio">Giờ: @hour_str:@minute_str</div>
-                                <div class="temperature">@Model.hourly.temperature_2m[j]°C</div>
-                                <div class="precipitation">Mưa: @Model.hourly.precipitation_probability[j]%</div>
-                            </div>
+                            if (@Model.hourly.precipitation_probability[j] >= 50)
+                            {
+                                <div class="weather-card background" style="border: 4px solid #01CDD4; background-image: url('/images/Screenshot 2024-12-07 164321.png');">
+                                    <div class="background-blur" style="backdrop-filter: blur(5px)"></div>
+                                    <div class="card-content">
+                                        @*<div class="time">@Model.hourly.time[i]</div>*@
+                                        <div class="time ngay" style="color: #ffffff">Ngày: @day/@month/@year</div>
+                                        <div class="time gio">Giờ: @hour_str:@minute_str</div>
+                                        @if (@Model.hourly.temperature_2m[j] >= 30)
+                                        {
+                                            <div class="temperature" style="color: #e74c3c;">@Model.hourly.temperature_2m[j]°C</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="temperature" style="color: #80FF4D;">@Model.hourly.temperature_2m[j]°C</div>
+                                        }
+                                        <div class="precipitation">Mưa: @Model.hourly.precipitation_probability[j]%</div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="weather-card">
+                                    @*<div class="time">@Model.hourly.time[i]</div>*@
+                                    <div class="time ngay">Ngày: @day/@month/@year</div>
+                                    <div class="time gio">Giờ: @hour_str:@minute_str</div>
+                                    @if (@Model.hourly.temperature_2m[j] >= 27)
+                                    {
+                                        <div class="temperature" style="color: #e74c3c;">@Model.hourly.temperature_2m[j]°C</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="temperature" style="color: #80FF4D;">@Model.hourly.temperature_2m[j]°C</div>
+                                    }
+                                    <div class="precipitation">Mưa: @Model.hourly.precipitation_probability[j]%</div>
+                                </div>
+                            }
                         }
                     }
                 </div>
