@@ -25,7 +25,13 @@ namespace DOAN_CLOUND
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "index", id = UrlParameter.Optional }
             );
-          
+
+            routes.MapRoute(
+                name: "Weather",
+                url: "{controller}/{action}/{latitude}/{longitude}",
+                defaults: new { controller = "Weather", action = "GetWeather", latitude = UrlParameter.Optional, longitude = UrlParameter.Optional }
+            );
+
 
         }
     }
