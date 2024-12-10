@@ -35,7 +35,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr style="line-height: 133px">
             <td>
                 @Html.DisplayFor(modelItem => item.TENHANG)
             </td>
@@ -45,9 +45,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CATE_ID)
             </td>
-            <td>
-             
-                <img src="@Html.DisplayFor(modelItem => item.HINHANH)" width="200px" style="border-radius:8px"></img>
+            <td style="vertical-align: middle">
+                <div style="background-image: url('@Html.DisplayFor(modelItem => item.HINHANH)');
+        width: 100px;
+        background-position: center;
+        height: 100px;  
+        background-size: cover;
+        background-repeat: no-repeat;
+"></div>
+                @*<img src="@Html.DisplayFor(modelItem => item.HINHANH)" width="200px" style="border-radius:8px"></img>*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GIA)
