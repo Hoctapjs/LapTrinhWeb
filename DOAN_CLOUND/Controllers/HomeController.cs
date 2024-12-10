@@ -187,19 +187,19 @@ namespace DOAN_CLOUND.Controllers
         {
             var taikhoan = fc["TenDN"];
             var matkhau = fc["Matkhau"];
-
+            Session["tendn"] = fc["TenDN"];
             bool kiemtra = true;
 
 
             if (string.IsNullOrEmpty(taikhoan))
             {
-                ViewData["Loi2"] = "Ten dang nhap khong duoc de trong";
+                ViewData["Loi1"] = "Ten dang nhap khong duoc de trong";
                 kiemtra = false;
             }
 
             if (string.IsNullOrEmpty(matkhau))
             {
-                ViewData["Loi3"] = "Mat Khau khong duoc de trong";
+                ViewData["Loi2"] = "Mat Khau khong duoc de trong";
                 kiemtra = false;
             }
 
@@ -227,6 +227,7 @@ namespace DOAN_CLOUND.Controllers
                 else
                 {
                     ViewBag.TB = "Đăng Nhập Thất Bại, Sai Tài Khoản Hoặc Mật Khẩu";
+                    return View();
                 }
 
                 return RedirectToAction("Index", "Home");
