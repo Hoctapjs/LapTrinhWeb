@@ -43,7 +43,7 @@
         </td>
         <td>
             @Html.ActionLink("Update", "Update_Order", "Order", new { mahoadon = item.MAHOADON }, null) |
-            @Html.ActionLink("Details", "Details", new { id = item.MAHOADON }) |
+            @Html.ActionLink("Details", "Index_Order_Details_Id", "Home", new { mahd = item.MAHOADON }, null) |
             @Html.ActionLink("Delete", "Delete_Order", "Order", new { mahoadon = item.MAHOADON }, null)
         </td>
     </tr>

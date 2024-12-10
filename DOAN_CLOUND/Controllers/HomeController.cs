@@ -103,6 +103,12 @@ namespace DOAN_CLOUND.Controllers
             return View(listOrderDetails);
         }
 
+        public ActionResult Index_Order_Details_Id(int mahd)
+        {
+            var listOrderDetails = db.ORDER_DETAILs.Where(x => x.MAHOADON == mahd).ToList();
+            return View(listOrderDetails);
+        }
+
 
         // đăng nhập - đăng ký
         [HttpGet]

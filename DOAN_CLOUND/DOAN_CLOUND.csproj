@@ -1170,6 +1170,7 @@
     <Content Include="Views\Product\Delete_Product.cshtml" />
     <Content Include="Views\Product\Update_Product.cshtml" />
     <Content Include="Views\Weather\GetWeather.cshtml" />
+    <Content Include="Views\Home\Index_Order_Details_Id.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
