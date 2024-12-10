@@ -110,6 +110,8 @@ namespace DOAN_CLOUND.Controllers
         }
 
 
+        
+
         // đăng nhập - đăng ký
         [HttpGet]
         public ActionResult DangKy()
