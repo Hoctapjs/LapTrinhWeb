@@ -198,6 +198,7 @@ namespace DOAN_CLOUND.Controllers
             Session["tendn"] = fc["TenDN"];
             bool kiemtra = true;
 
+            Session ["tendn"] = fc["TenDN"];
 
             if (string.IsNullOrEmpty(taikhoan))
             {
