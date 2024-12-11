@@ -104,5 +104,11 @@ namespace DOAN_CLOUND.Controllers
             db.SubmitChanges(); // Lưu lại thay đổi (này là với linQ nha)
             return RedirectToAction("Index_Products", "Home");
         }
+
+        public ActionResult Search(string name)
+        {
+            List<PRODUCT> item = db.PRODUCTs.Where(sp => sp.TENHANG.Contains(name)).ToList();
+            return View(item);
+        }
     }
 }

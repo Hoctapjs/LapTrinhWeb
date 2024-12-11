@@ -212,10 +212,10 @@
                         <!-- ============================================================== -->
                         <li class="nav-item d-none d-md-block">
                             <a class="nav-link" href="javascript:void(0)">
-                                <form>
+                                <form action="@Url.Action("Search", "Product")" method="post">
                                     <div class="customize-input">
                                         <input class="form-control custom-shadow custom-radius border-0 bg-white"
-                                               type="search" placeholder="Search" aria-label="Search">
+                                               type="search" placeholder="Search" aria-label="Search" name="name">
                                         <i class="form-control-icon" data-feather="search"></i>
                                     </div>
                                 </form>
