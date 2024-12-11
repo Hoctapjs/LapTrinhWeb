@@ -46,6 +46,12 @@
                 @Html.DisplayFor(modelItem => item.CATE_ID)
             </td>
             <td style="vertical-align: middle">
+                @{ 
+                    if (!item.HINHANH.Contains("/images/"))
+                    {
+                        item.HINHANH = "/images/" + item.HINHANH;
+                    }
+                }
                 <div style="background-image: url('@Html.DisplayFor(modelItem => item.HINHANH)');
         width: 100px;
         background-position: center;
