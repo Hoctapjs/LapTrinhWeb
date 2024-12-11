@@ -75,36 +75,60 @@ namespace DOAN_CLOUND.Controllers
 
         public ActionResult Index_Products()
         {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("DangNhap", "Home");
+            }
             var listProduct = db.PRODUCTs.ToList();
             return View(listProduct);
         }
 
         public ActionResult Index_Category()
         {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("DangNhap", "Home");
+            }
             var listCategories = db.CATEGORies.ToList();
             return View(listCategories);
         }
 
         public ActionResult Index_User()
         {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("DangNhap", "Home");
+            }
             var listUser = db.USERs.ToList();
             return View(listUser);
         }
 
         public ActionResult Index_Order()
         {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("DangNhap", "Home");
+            }
             var listOrder = db.ORDERs.ToList();
             return View(listOrder);
         }
 
         public ActionResult Index_Order_Details()
         {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("DangNhap", "Home");
+            }
             var listOrderDetails = db.ORDER_DETAILs.ToList();
             return View(listOrderDetails);
         }
 
         public ActionResult Index_Order_Details_Id(int mahd)
         {
+            if (Session["taikhoan"] == null)
+            {
+                return RedirectToAction("DangNhap", "Home");
+            }
             var listOrderDetails = db.ORDER_DETAILs.Where(x => x.MAHOADON == mahd).ToList();
             return View(listOrderDetails);
         }
